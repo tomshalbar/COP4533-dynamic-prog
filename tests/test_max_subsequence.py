@@ -2,7 +2,6 @@ from src.max_subsequence import calc_max_subsequence
 
 
 def test_short():
-
     test_dict = {
         "q": 2,
         "w": 4,
@@ -37,6 +36,28 @@ def test_short():
     assert resdseq == "pwweq"
     assert reseval == 16
     assert reseseq == "u"
+
+
+def test_short_flip():
+    test_dict = {
+        "q": 2,
+        "w": 4,
+        "e": 5,
+        "r": 11,
+        "t": 7,
+        "y": 3,
+        "u": 16,
+        "i": 8,
+        "o": 2,
+        "p": 13,
+    }
+    test_str1 = "qwq"
+    test_str2 = "qwtqweruioupqwewqeqwpe"  # qwq
+
+    resaval, resaseq = calc_max_subsequence(test_dict, test_str1, test_str2)
+
+    assert resaval == 8
+    assert resaseq == "qwq"
 
 
 def test_negative_alphabet():
