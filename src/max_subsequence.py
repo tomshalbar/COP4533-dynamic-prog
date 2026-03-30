@@ -19,9 +19,9 @@ def calc_max_subsequence(alphabet: dict, str1: str, str2: str) -> tuple[int, str
             else:
                 OPT[i, j] = max(OPT[i - 1, j], OPT[i, j - 1])
     subseq = []
-    last_row = OPT[-1]
+    str1_ix = len(str1)
     for i in range(len(str2), 0, -1):
-        if last_row[i] > last_row[i - 1]:
+        if OPT[str1_ix, i] > OPT[str1_ix, i - 1]:
             subseq.append(str2[i - 1])
-
+            str1_ix = str1_ix - 1
     return OPT[len(str1), len(str2)], "".join(subseq[::-1])
