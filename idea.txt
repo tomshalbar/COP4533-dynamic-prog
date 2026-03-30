@@ -1,0 +1,7 @@
+Possible recursive function:
+
+OPT(S1, S2) =
+
+if S1 != S2: max(OPT[S1-1][S2], OPT[S1][S2-1])
+
+if S1 == S2: max(W_s1s2 + OPT[S1-1][S2-1], OPT[S1-1][S2], OPT[S1][S2-1])
