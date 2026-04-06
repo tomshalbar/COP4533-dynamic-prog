@@ -1,3 +1,6 @@
+from pathlib import Path
+
+
 def parse_hvlcs_file(filepath) -> tuple | None:
     """
         Parses the HVLCS input file and returns the variables needed for the algorithm.
@@ -39,3 +42,23 @@ def parse_hvlcs_file(filepath) -> tuple | None:
     b: str = lines[k + 2]
 
     return alphabet_values, a, b
+
+
+def output_results(input_file: str, res: tuple[int, str]) -> None:
+    """
+        Writes the resulting HVLCS and its subsequences to an output file (e.g. inputs/file.in -> outputs/file.out)
+
+        Params:
+            input_file -> Program's input file. (e.g. usg: if the input file is 'inputs/file.in', we convert it into 'outputs/file.out')
+            res -> a tuple consisting of the HVLCS (int value), and its corresponding subsequence (str value)
+
+        Returns:
+            Nothing, just writes the data to a file
+    """
+    file_stem: str = str(Path(input_file).stem)
+    output_file: str = "outputs/" + file_stem + ".out"
+    with open(output_file, 'w') as out_file:
+        out_file.write(f"{res[0]}\n")  # single integer on the first line
+        out_file.write(f"{res[1]}\n")  # optimal subsequence on the next line
+
+    print(f"Success! Results successfully written to '{output_file}'.")
